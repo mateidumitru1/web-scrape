@@ -111,17 +111,3 @@ for event in events:
     event.pop('location')
 
     insert_data_into_table('events', event)
-
-for event in events:
-    event['location_id'] = str(event['location_id'])
-    if 'date' in event:
-        event['date'] = str(event['date'])
-
-for location in locations:
-    location['id'] = str(location['id'])
-
-with open('events.json', 'w') as outfile:
-    json.dump(events, outfile)
-
-with open('locations.json', 'w') as outfile:
-    json.dump(locations, outfile)

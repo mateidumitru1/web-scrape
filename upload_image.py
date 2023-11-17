@@ -1,6 +1,6 @@
 from google.cloud import storage
 
-storage_account_key_file = 'C:/Users/Matei/Desktop/licenta/Licenta/backend/src/main/resources/gcp-credentials.json'
+storage_account_key_file = 'C:/Users/matei/Desktop/proiect-licenta/Licenta/backend/src/main/resources/gcp-credentials.json'
 
 storage_client = storage.Client.from_service_account_json(storage_account_key_file)
 bucket_name = 'matei-storage'

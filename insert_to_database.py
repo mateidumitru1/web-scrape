@@ -11,10 +11,9 @@ db_config = {
 
 
 def insert_data_into_table(table_name, data):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(buffered = True)
     try:
-      conn = mysql.connector.connect(**db_config)
-      cursor = conn.cursor(buffered = True)
-
       if table_name == 'events':
         if len(data['description']) > 11000:
           data['short_description'] += data['description'][:4500 - len(data['short_description']) - 1]
