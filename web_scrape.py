@@ -5,7 +5,7 @@ import json
 import io
 import re
 from upload_image import upload_blob
-from insert_to_database import insert_data_into_table
+from insert_to_database import insert_data_into_table, delete_all_tables
 
 iabilet_url = 'https://www.iabilet.ro'
 
@@ -23,6 +23,7 @@ urls = [
 
 events = []
 locations = []
+tickets = []
 
 for url in urls:
     response = get(url)
@@ -54,6 +55,8 @@ for url in urls:
     event_list = html_soup.find_all('div', class_ = 'event-list-venue-item')
 
     for event in event_list:
+        tickets = []
+
         event_url = iabilet_url + event.find('a')['href']
         event_response = get(event_url)
 
@@ -84,14 +87,50 @@ for url in urls:
 
         rgb_image.save('event-images/' + title_image.strip() + '.jpg', 'JPEG')
 
+        ticket_soup = BeautifulSoup(event_response.text, 'html.parser')
+
+        ticket_table = None
+        try:
+            ticket_table = ticket_soup.find('div', class_ = 'table-flex form-zone')
+
+            ticket_types = ticket_table.find_all('div', class_ = 'table-flex-row')
+            ticket_types.pop(ticket_types.__len__() - 1)
+
+            for ticket_type in ticket_types:
+                ticket_type_name = ticket_type.find('div', class_='ticket-categ').find('div', class_='ticket-info').find('span').get_text(strip=True)
+                
+                ticket_type_price_div = ticket_type.find('div', class_='ticket-price')
+                ticket_type_price = None
+                
+                if ticket_type_price_div:
+                    current_price_span = ticket_type_price_div.find('span', class_=lambda x: x != 'old-price')
+                    
+                    if not current_price_span:
+                        current_price_anchor = ticket_type_price_div.find('a')
+                    
+                    if current_price_span:
+                        ticket_type_price = current_price_span.get_text(strip=True, separator='.')
+                    elif current_price_anchor:
+                        ticket_type_price = current_price_anchor.get_text(strip=True, separator='.')
+                tickets.append({
+                    'name': ticket_type_name,
+                    'price': float(ticket_type_price[:-4]),
+                    'quantity': 100
+                })
+            
+        except:
+            print('No tickets found for event: ' + event_url)
+
         events.append({
-            'title': title_image.strip(),
-            'date': date,
-            'short_description': short_description.strip(),
-            'description': description.strip(),
-            'location': location.strip()
+                'title': title_image.strip(),
+                'date': date,
+                'short_description': short_description.strip(),
+                'description': description.strip(),
+                'location': location.strip(),
+                'ticket_types': tickets
         })
 
+delete_all_tables()
 
 for location in locations:
     location['image_url'] = upload_blob('location-images/' + location['name'] + '.jpg', 'location-images/' + location['name'] + '.jpg')
@@ -100,6 +139,7 @@ for location in locations:
 location_map = {
     location['name']: location['id'] for location in locations
 }
+
 
 for event in events:
     event['image_url'] = upload_blob('event-images/' + event['title'] + '.jpg', 'event-images/' + event['title'] + '.jpg')
@@ -110,4 +150,17 @@ for event in events:
         event.pop('date')
     event.pop('location')
 
-    insert_data_into_table('events', event)
+    event_to_add = {
+        'title': event['title'],
+        'short_description': event['short_description'],
+        'description': event['description'],
+        'image_url': event['image_url'],
+        'location_id': event['location_id']
+    }
+
+    event_id = insert_data_into_table('events', event_to_add)
+
+    for ticket_type in event['ticket_types']:
+        ticket_type['event_id'] = event_id
+        insert_data_into_table('ticket_types', ticket_type)
+

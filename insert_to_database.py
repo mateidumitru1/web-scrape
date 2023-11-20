@@ -18,13 +18,6 @@ def insert_data_into_table(table_name, data):
         if len(data['description']) > 11000:
           data['short_description'] += data['description'][:4500 - len(data['short_description']) - 1]
           data['description'] = data['description'][:4500]
-
-      select_sql = "SELECT id FROM %s WHERE %s = %s" % (table_name, list(data.keys())[0], '%s')
-      cursor.execute(select_sql, (next(iter(data.values())),))
-      existing_record = cursor.fetchone()
-
-      if existing_record:
-        return existing_record[0]
       
       data['id'] = uuid.uuid4().bytes
 
@@ -41,6 +34,22 @@ def insert_data_into_table(table_name, data):
     except mysql.connector.Error as error:
       print("Failed to insert record into table {}".format(error))
   
+    
+    finally:
+      cursor.close()
+      conn.close()
+
+def delete_all_tables():
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(buffered = True)
+    try:
+      cursor.execute("DELETE FROM ticket_types")
+      cursor.execute("DELETE FROM events")
+      cursor.execute("DELETE FROM locations")
+      conn.commit()
+    
+    except mysql.connector.Error as error:
+      print("Failed to delete records from table {}".format(error))
     
     finally:
       cursor.close()
