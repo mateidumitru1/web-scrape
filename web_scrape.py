@@ -1,3 +1,7 @@
+from setup import setup
+
+setup()
+
 from requests import get
 from bs4 import BeautifulSoup
 from PIL import Image
@@ -5,7 +9,7 @@ import json
 import io
 import re
 from upload_image import upload_blob
-from insert_to_database import insert_data_into_table, delete_all_tables
+from insert_to_database import insert_data_into_table
 
 iabilet_url = 'https://www.iabilet.ro'
 
@@ -64,7 +68,11 @@ for url in urls:
 
         main_content = event_soup.find('div', class_ = 'col-xs-7')
 
+        if not main_content:
+            main_content = event_soup.find('div', class_ = 'col-xs-9') 
+
         title = main_content.find('h1').text.strip()
+
         date = ''
         try:
             date = main_content.find('meta')['content']
@@ -76,16 +84,19 @@ for url in urls:
 
         description = main_content.find('div', class_ = 'event-detail').text.strip()
 
-        image = event.find('img')
-        image_response = get(image['src'], stream=True, headers={})
-        image_data = image_response.content
-        image_to_save = Image.open(io.BytesIO(image_data))
-        rgb_image = image_to_save.convert('RGB')
+        try:
+            image = event.find('img')
+            image_response = get(image['src'], stream=True, headers={})
+            image_data = image_response.content
+            image_to_save = Image.open(io.BytesIO(image_data))
+            rgb_image = image_to_save.convert('RGB')
 
-        chars_to_remove = r'\\/:*?"<>|'
-        title_image = re.sub('[' + re.escape(chars_to_remove) + ']', '', title)
+            chars_to_remove = r'\\/:*?"<>|'
+            title_image = re.sub('[' + re.escape(chars_to_remove) + ']', '', title)
 
-        rgb_image.save('event-images/' + title_image.strip() + '.jpg', 'JPEG')
+            rgb_image.save('event-images/' + title_image.strip() + '.jpg', 'JPEG')
+        except:
+            print('No image found for event: ' + title)
 
         ticket_soup = BeautifulSoup(event_response.text, 'html.parser')
 
@@ -130,7 +141,6 @@ for url in urls:
                 'ticket_types': tickets
         })
 
-delete_all_tables()
 
 for location in locations:
     location['image_url'] = upload_blob('location-images/' + location['name'] + '.jpg', 'location-images/' + location['name'] + '.jpg')
@@ -142,25 +152,23 @@ location_map = {
 
 
 for event in events:
-    event['image_url'] = upload_blob('event-images/' + event['title'] + '.jpg', 'event-images/' + event['title'] + '.jpg')
+    try:
+        event['image_url'] = upload_blob('event-images/' + event['title'] + '.jpg', 'event-images/' + event['title'] + '.jpg')
+    except:
+        print('No image found for event: ' + event['title'])
 
     event['location_id'] = location_map[event['location']]
 
     if event['date'] == '':
         event.pop('date')
     event.pop('location')
+    ticket_types = event.pop('ticket_types')
 
-    event_to_add = {
-        'title': event['title'],
-        'short_description': event['short_description'],
-        'description': event['description'],
-        'image_url': event['image_url'],
-        'location_id': event['location_id']
-    }
+    event_to_add = event
 
     event_id = insert_data_into_table('events', event_to_add)
 
-    for ticket_type in event['ticket_types']:
+    for ticket_type in ticket_types:
         ticket_type['event_id'] = event_id
         insert_data_into_table('ticket_types', ticket_type)
 
