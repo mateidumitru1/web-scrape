@@ -61,85 +61,89 @@ for url in urls:
     for event in event_list:
         tickets = []
 
-        event_url = iabilet_url + event.find('a')['href']
-        event_response = get(event_url)
-
-        event_soup = BeautifulSoup(event_response.text, 'html.parser')
-
-        main_content = event_soup.find('div', class_ = 'col-xs-7')
-
-        if not main_content:
-            main_content = event_soup.find('div', class_ = 'col-xs-9') 
-
-        title = main_content.find('h1').text.strip()
-
-        date = ''
         try:
+            event_url = iabilet_url + event.find('a')['href']
+            event_response = get(event_url)
+
+            event_soup = BeautifulSoup(event_response.text, 'html.parser')
+
+            main_content = event_soup.find('div', class_ = 'col-xs-7')
+
+            if not main_content:
+                main_content = event_soup.find('div', class_ = 'col-xs-9')
+
+
+            title_element = main_content.find('h1')
+
+            title = title_element.text.strip()
+        
             date = main_content.find('meta')['content']
-        except:
-            print('No date found for event: ' + title)
+     
 
-        short_description = main_content.find('div', class_ = 'short-desc').text.strip()
-        short_description = short_description.replace('Mai multe detalii', '')
+            short_description = main_content.find('div', class_ = 'short-desc').text.strip()
+            short_description = short_description.replace('Mai multe detalii', '')
 
-        description = main_content.find('div', class_ = 'event-detail').text.strip()
+            description = main_content.find('div', class_ = 'event-detail').text.strip()
 
-        try:
-            image = event.find('img')
-            image_response = get(image['src'], stream=True, headers={})
-            image_data = image_response.content
-            image_to_save = Image.open(io.BytesIO(image_data))
-            rgb_image = image_to_save.convert('RGB')
+            try:
+                image = event.find('img')
+                image_response = get(image['src'], stream=True, headers={})
+                image_data = image_response.content
+                image_to_save = Image.open(io.BytesIO(image_data))
+                rgb_image = image_to_save.convert('RGB')
 
-            chars_to_remove = r'\\/:*?"<>|'
-            title_image = re.sub('[' + re.escape(chars_to_remove) + ']', '', title)
+                chars_to_remove = r'\\/:*?"<>|'
+                title_image = re.sub('[' + re.escape(chars_to_remove) + ']', '', title)
 
-            rgb_image.save('event-images/' + title_image.strip() + '.jpg', 'JPEG')
-        except:
-            print('No image found for event: ' + title)
+                rgb_image.save('event-images/' + title_image.strip() + '.jpg', 'JPEG')
+            except:
+                print('No image found for event: ' + title)
 
-        ticket_soup = BeautifulSoup(event_response.text, 'html.parser')
+            ticket_soup = BeautifulSoup(event_response.text, 'html.parser')
 
-        ticket_table = None
-        try:
-            ticket_table = ticket_soup.find('div', class_ = 'table-flex form-zone')
+            ticket_table = None
+            try:
+                ticket_table = ticket_soup.find('div', class_ = 'table-flex form-zone')
 
-            ticket_types = ticket_table.find_all('div', class_ = 'table-flex-row')
-            ticket_types.pop(ticket_types.__len__() - 1)
+                ticket_types = ticket_table.find_all('div', class_ = 'table-flex-row')
+                ticket_types.pop(ticket_types.__len__() - 1)
 
-            for ticket_type in ticket_types:
-                ticket_type_name = ticket_type.find('div', class_='ticket-categ').find('div', class_='ticket-info').find('span').get_text(strip=True)
-                
-                ticket_type_price_div = ticket_type.find('div', class_='ticket-price')
-                ticket_type_price = None
-                
-                if ticket_type_price_div:
-                    current_price_span = ticket_type_price_div.find('span', class_=lambda x: x != 'old-price')
+                for ticket_type in ticket_types:
+                    ticket_type_name = ticket_type.find('div', class_='ticket-categ').find('div', class_='ticket-info').find('span').get_text(strip=True)
                     
-                    if not current_price_span:
-                        current_price_anchor = ticket_type_price_div.find('a')
+                    ticket_type_price_div = ticket_type.find('div', class_='ticket-price')
+                    ticket_type_price = None
                     
-                    if current_price_span:
-                        ticket_type_price = current_price_span.get_text(strip=True, separator='.')
-                    elif current_price_anchor:
-                        ticket_type_price = current_price_anchor.get_text(strip=True, separator='.')
-                tickets.append({
-                    'name': ticket_type_name,
-                    'price': float(ticket_type_price[:-4]),
-                    'quantity': 100
-                })
-            
-        except:
-            print('No tickets found for event: ' + event_url)
+                    if ticket_type_price_div:
+                        current_price_span = ticket_type_price_div.find('span', class_=lambda x: x != 'old-price')
+                        
+                        if not current_price_span:
+                            current_price_anchor = ticket_type_price_div.find('a')
+                        
+                        if current_price_span:
+                            ticket_type_price = current_price_span.get_text(strip=True, separator='.')
+                        elif current_price_anchor:
+                            ticket_type_price = current_price_anchor.get_text(strip=True, separator='.')
+                    tickets.append({
+                        'name': ticket_type_name,
+                        'price': float(ticket_type_price[:-4]),
+                        'quantity': 100
+                    })
+                
+            except:
+                print('No tickets found for event: ' + event_url)
 
-        events.append({
-                'title': title_image.strip(),
-                'date': date,
-                'short_description': short_description.strip(),
-                'description': description.strip(),
-                'location': location.strip(),
-                'ticket_types': tickets
-        })
+            events.append({
+                    'title': title_image.strip(),
+                    'date': date,
+                    'short_description': short_description.strip(),
+                    'description': description.strip(),
+                    'location': location.strip(),
+                    'ticket_types': tickets
+            })
+
+        except:
+            pass
 
 
 for location in locations:
