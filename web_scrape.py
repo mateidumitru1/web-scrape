@@ -5,15 +5,18 @@ setup()
 from requests import get
 from bs4 import BeautifulSoup
 from PIL import Image
+from unidecode import unidecode
 import json
 import io
 import re
+from format_artist_list import remove_artists
 from upload_image import upload_blob
-from insert_to_database import insert_data_into_table
+from insert_to_database import *
+
 
 iabilet_url = 'https://www.iabilet.ro'
 
-urls = [
+locations_urls = [
             iabilet_url + '/bilete-sala-palatului-venue-876/', 
             iabilet_url + '/bilete-hard-rock-cafe-venue-560/',
             iabilet_url + '/bilete-arenele-romane-venue-25/',
@@ -25,11 +28,31 @@ urls = [
             iabilet_url + '/bilete-the-fool-venue-3205/'
         ]
 
+artists_url = 'https://www.iabilet.ro/artist'
+
+all_artists = []
+
 events = []
 locations = []
 tickets = []
 
-for url in urls:
+for char in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+    response = get(artists_url + '/' + char)
+    html_soup = BeautifulSoup(response.text, 'html.parser')
+    
+    artists_list_element = html_soup.find('ul', class_ = 'artist-list')
+    artist_list = artists_list_element.find_all('li')
+    for item in artist_list:
+        artist = item.find('a')
+        if artist:
+            artist = unidecode(artist.text)
+            all_artists.append(artist)
+
+all_artists = remove_artists(all_artists)
+
+chars_to_remove = r'\\/:*?"<>|'
+
+for url in locations_urls:
     response = get(url)
     html_soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -46,7 +69,6 @@ for url in urls:
     location_image_to_save = Image.open(io.BytesIO(location_image_data))
     rgb_location_image = location_image_to_save.convert('RGB')
 
-    chars_to_remove = r'\\/:*?"<>|'
     name_location_image = re.sub('[' + re.escape(chars_to_remove) + ']', '', location)
 
     rgb_location_image.save('location-images/' + name_location_image.strip() + '.jpg', 'JPEG')
@@ -75,7 +97,7 @@ for url in urls:
 
             title_element = main_content.find('h1')
 
-            title = title_element.text.strip()
+            title_element_text = title_element.text.strip()
         
             date = main_content.find('meta')['content']
      
@@ -93,11 +115,11 @@ for url in urls:
                 rgb_image = image_to_save.convert('RGB')
 
                 chars_to_remove = r'\\/:*?"<>|'
-                title_image = re.sub('[' + re.escape(chars_to_remove) + ']', '', title)
+                title = re.sub('[' + re.escape(chars_to_remove) + ']', '', title_element_text)
 
-                rgb_image.save('event-images/' + title_image.strip() + '.jpg', 'JPEG')
+                rgb_image.save('event-images/' + title.strip() + '.jpg', 'JPEG')
             except:
-                print('No image found for event: ' + title)
+                print('No image found for event: ' + title_element_text)
 
             ticket_soup = BeautifulSoup(event_response.text, 'html.parser')
 
@@ -133,22 +155,56 @@ for url in urls:
             except:
                 print('No tickets found for event: ' + event_url)
 
+            title_lower = ' ' + title.lower() + ' '
+            title_lower.replace(',', ' ')
+            title_lower.replace('\'', ' ')
+            title_lower.replace('\u2019', ' ')
+            title_lower.replace(' - ', ' ')
+            title_lower = unidecode(title_lower)
+
+            found_artists = set()
+
+            for artist in all_artists:
+                artist_lower = ' ' + artist.lower() + ' '
+
+                if artist_lower in title_lower:
+                    longer_versions = [other_artist for other_artist in all_artists if other_artist.lower().startswith(artist_lower.strip()) and len(other_artist) > len(artist)]
+                    if not longer_versions:
+                        found_artists.add(artist)
+                        title_lower = title_lower.replace(artist_lower, ' ')
+
+                    else:
+                        for longer_artist in longer_versions:
+                            if longer_artist.lower() in title_lower:
+                                found_artists.add(longer_artist)
+                                title_lower = title_lower.replace(longer_artist.lower(), ' ')
+                                break
+
+                        found_artists.add(artist)
+                        title_lower = title_lower.replace(artist_lower, ' ')
+
+            if not found_artists:
+                print(f"No artist found in event title: {title}")
+
+
             events.append({
-                    'title': title_image.strip(),
+                    'title': title.strip(),
                     'date': date,
                     'short_description': short_description.strip(),
                     'description': description.strip(),
                     'location': location.strip(),
-                    'ticket_types': tickets
+                    'ticket_types': tickets,
+                    'artists': list(found_artists)
             })
 
-        except:
+        except Exception as e:
+            print(e)
             pass
 
 
 for location in locations:
     location['image_url'] = upload_blob('location-images/' + location['name'] + '.jpg', 'location-images/' + location['name'] + '.jpg')
-    location['id'] = insert_data_into_table('locations', location)
+    location['id'] = insert_location_into_table(location)
 
 location_map = {
     location['name']: location['id'] for location in locations
@@ -170,9 +226,13 @@ for event in events:
 
     event_to_add = event
 
-    event_id = insert_data_into_table('events', event_to_add)
+    event_id = insert_event_into_table(event_to_add)
+
+    for artist in event['artists']:
+        artist_id = insert_artist_into_table(artist)
+        insert_event_artist_into_table(event_id, artist_id)
 
     for ticket_type in ticket_types:
         ticket_type['event_id'] = event_id
-        insert_data_into_table('ticket_types', ticket_type)
+        insert_ticket_type_into_table(ticket_type)
 

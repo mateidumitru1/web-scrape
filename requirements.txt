@@ -1,5 +1,6 @@
 beautifulsoup4
 requests
 Pillow
+unidecode
 mysql-connector-python
 google-cloud-storage
