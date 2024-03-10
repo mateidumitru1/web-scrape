@@ -74,7 +74,7 @@ def insert_artist_into_table(artist):
 
   try:
     select_sql = "SELECT id FROM artists WHERE name = %s"
-    cursor.execute(select_sql, (artist,))
+    cursor.execute(select_sql, (artist['name'],))
     existing_record = cursor.fetchone()
 
     if existing_record:
@@ -82,8 +82,8 @@ def insert_artist_into_table(artist):
     
     artist_id = uuid.uuid4().bytes
 
-    insert_sql = "INSERT INTO artists (id, name) VALUES (%s, %s)"
-    cursor.execute(insert_sql, (artist_id, artist))
+    insert_sql = "INSERT INTO artists (id, name, image_url) VALUES (%s, %s, %s)"
+    cursor.execute(insert_sql, (artist_id, artist['name'], artist['image_url']))
   
     conn.commit()
 
@@ -110,6 +110,60 @@ def insert_event_artist_into_table(event_id, artist_id):
     
     insert_sql = "INSERT INTO event_artists (event_id, artist_id) VALUES (%s, %s)"
     cursor.execute(insert_sql, (event_id, artist_id))
+  
+    conn.commit()
+
+    return artist_id
+  
+  except mysql.connector.Error as error:
+    print("Failed to insert record into table {}".format(error))
+
+  finally:
+    cursor.close()
+    conn.close()
+
+def insert_genre_into_table(genre):
+  conn = mysql.connector.connect(**db_config)
+  cursor = conn.cursor(buffered = True)
+
+  try:
+    select_sql = "SELECT id FROM genres WHERE name = %s"
+    cursor.execute(select_sql, (genre,))
+    existing_record = cursor.fetchone()
+
+    if existing_record:
+      return existing_record[0]
+    
+    genre_id = uuid.uuid4().bytes
+
+    insert_sql = "INSERT INTO genres (id, name) VALUES (%s, %s)"
+    cursor.execute(insert_sql, (genre_id, genre))
+  
+    conn.commit()
+
+    return genre_id
+  
+  except mysql.connector.Error as error:
+    print("Failed to insert record into table {}".format(error))
+
+  finally:
+    cursor.close()
+    conn.close()
+
+def insert_genre_artist_into_table(genre_id, artist_id):
+  conn = mysql.connector.connect(**db_config)
+  cursor = conn.cursor(buffered = True)
+
+  try:
+    select_sql = "SELECT * FROM genre_artists WHERE genre_id = %s AND artist_id = %s"
+    cursor.execute(select_sql, (genre_id, artist_id))
+    existing_record = cursor.fetchone()
+
+    if existing_record:
+      return existing_record[0]
+    
+    insert_sql = "INSERT INTO genre_artists (genre_id, artist_id) VALUES (%s, %s)"
+    cursor.execute(insert_sql, (genre_id, artist_id))
   
     conn.commit()
 

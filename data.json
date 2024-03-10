@@ -1,0 +1,686 @@
+{
+    "artists": {
+        "href": "https://api.spotify.com/v1/search?query=Micutzu&type=artist&market=RO&offset=0&limit=20",
+        "items": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/4m4YzYYzalOOOUXNf6UjoK"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 1573
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/4m4YzYYzalOOOUXNf6UjoK",
+                "id": "4m4YzYYzalOOOUXNf6UjoK",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b273c024a6e513a8f1b21ec60d2c",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e02c024a6e513a8f1b21ec60d2c",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d00004851c024a6e513a8f1b21ec60d2c",
+                        "width": 64
+                    }
+                ],
+                "name": "Micutzu",
+                "popularity": 25,
+                "type": "artist",
+                "uri": "spotify:artist:4m4YzYYzalOOOUXNf6UjoK"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3enUrAT9PSoQEGMcrleVz9"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 7
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/3enUrAT9PSoQEGMcrleVz9",
+                "id": "3enUrAT9PSoQEGMcrleVz9",
+                "images": [],
+                "name": "Micutzu",
+                "popularity": 0,
+                "type": "artist",
+                "uri": "spotify:artist:3enUrAT9PSoQEGMcrleVz9"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/7gBevngFGqpgkQRDLV8aSC"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 429
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/7gBevngFGqpgkQRDLV8aSC",
+                "id": "7gBevngFGqpgkQRDLV8aSC",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b273d8503d12f63c2747309e37a2",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e02d8503d12f63c2747309e37a2",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d00004851d8503d12f63c2747309e37a2",
+                        "width": 64
+                    }
+                ],
+                "name": "MicutzuStandup",
+                "popularity": 2,
+                "type": "artist",
+                "uri": "spotify:artist:7gBevngFGqpgkQRDLV8aSC"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/75cLQlfceOKJMop2LqS4Fu"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 8333
+                },
+                "genres": [
+                    "drift",
+                    "organic ambient"
+                ],
+                "href": "https://api.spotify.com/v1/artists/75cLQlfceOKJMop2LqS4Fu",
+                "id": "75cLQlfceOKJMop2LqS4Fu",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebeadb8426c873b0ae9a4f3f33",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174eadb8426c873b0ae9a4f3f33",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178eadb8426c873b0ae9a4f3f33",
+                        "width": 160
+                    }
+                ],
+                "name": "Michiru Aoyama",
+                "popularity": 44,
+                "type": "artist",
+                "uri": "spotify:artist:75cLQlfceOKJMop2LqS4Fu"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/1c7Nuf6iiW3JlR8kMTufug"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 1
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/1c7Nuf6iiW3JlR8kMTufug",
+                "id": "1c7Nuf6iiW3JlR8kMTufug",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b273784e7c31753dd212bd378469",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e02784e7c31753dd212bd378469",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d00004851784e7c31753dd212bd378469",
+                        "width": 64
+                    }
+                ],
+                "name": "Alex Velea X Micutzu",
+                "popularity": 0,
+                "type": "artist",
+                "uri": "spotify:artist:1c7Nuf6iiW3JlR8kMTufug"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/7BssMhtelPJEK1qycRG3iA"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 65106
+                },
+                "genres": [
+                    "manele"
+                ],
+                "href": "https://api.spotify.com/v1/artists/7BssMhtelPJEK1qycRG3iA",
+                "id": "7BssMhtelPJEK1qycRG3iA",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b2739b6ad3c0caaf14261d3765cd",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e029b6ad3c0caaf14261d3765cd",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d000048519b6ad3c0caaf14261d3765cd",
+                        "width": 64
+                    }
+                ],
+                "name": "Mihaita Piticu",
+                "popularity": 35,
+                "type": "artist",
+                "uri": "spotify:artist:7BssMhtelPJEK1qycRG3iA"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3fjWIhXhLhmGK6EcVEohCG"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 1982
+                },
+                "genres": [
+                    "muzica copii"
+                ],
+                "href": "https://api.spotify.com/v1/artists/3fjWIhXhLhmGK6EcVEohCG",
+                "id": "3fjWIhXhLhmGK6EcVEohCG",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb6077e1bfaa702a6e404c6f0f",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051746077e1bfaa702a6e404c6f0f",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1786077e1bfaa702a6e404c6f0f",
+                        "width": 160
+                    }
+                ],
+                "name": "Cutiu\u021ba Muzical\u0103",
+                "popularity": 41,
+                "type": "artist",
+                "uri": "spotify:artist:3fjWIhXhLhmGK6EcVEohCG"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/0L5dwvpzQOYyO4dREkJbKf"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 3
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/0L5dwvpzQOYyO4dREkJbKf",
+                "id": "0L5dwvpzQOYyO4dREkJbKf",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b273cce8326a03a845784231df56",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e02cce8326a03a845784231df56",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d00004851cce8326a03a845784231df56",
+                        "width": 64
+                    }
+                ],
+                "name": "MROCTUBREOC",
+                "popularity": 13,
+                "type": "artist",
+                "uri": "spotify:artist:0L5dwvpzQOYyO4dREkJbKf"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/76dRoxKtDwYkgCQePok9cU"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 144569
+                },
+                "genres": [
+                    "german hip hop"
+                ],
+                "href": "https://api.spotify.com/v1/artists/76dRoxKtDwYkgCQePok9cU",
+                "id": "76dRoxKtDwYkgCQePok9cU",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb1b26ead4c844959cf1ee54e8",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051741b26ead4c844959cf1ee54e8",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1781b26ead4c844959cf1ee54e8",
+                        "width": 160
+                    }
+                ],
+                "name": "Miksu / Macloud",
+                "popularity": 66,
+                "type": "artist",
+                "uri": "spotify:artist:76dRoxKtDwYkgCQePok9cU"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/0Pt3k7cpeOysqGGiw3tQcS"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 1752
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/0Pt3k7cpeOysqGGiw3tQcS",
+                "id": "0Pt3k7cpeOysqGGiw3tQcS",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b2730822d9b7774971784bc777a6",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e020822d9b7774971784bc777a6",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d000048510822d9b7774971784bc777a6",
+                        "width": 64
+                    }
+                ],
+                "name": "mizuki",
+                "popularity": 47,
+                "type": "artist",
+                "uri": "spotify:artist:0Pt3k7cpeOysqGGiw3tQcS"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/1IS7bD5eZp5n0rfTWEg6gQ"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 9
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/1IS7bD5eZp5n0rfTWEg6gQ",
+                "id": "1IS7bD5eZp5n0rfTWEg6gQ",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb14fb964580ee25622e441421",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab6761610000517414fb964580ee25622e441421",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f17814fb964580ee25622e441421",
+                        "width": 160
+                    }
+                ],
+                "name": "Miyuze",
+                "popularity": 29,
+                "type": "artist",
+                "uri": "spotify:artist:1IS7bD5eZp5n0rfTWEg6gQ"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/7EcpyneWBtxsJ9dyYrFrZe"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 5828
+                },
+                "genres": [
+                    "japanese vgm"
+                ],
+                "href": "https://api.spotify.com/v1/artists/7EcpyneWBtxsJ9dyYrFrZe",
+                "id": "7EcpyneWBtxsJ9dyYrFrZe",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b2734a656ce42c32110de3dc13fd",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e02ac6124605c755337e373d7ca",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d00004851ac6124605c755337e373d7ca",
+                        "width": 64
+                    }
+                ],
+                "name": "Naoshi Mizuta",
+                "popularity": 39,
+                "type": "artist",
+                "uri": "spotify:artist:7EcpyneWBtxsJ9dyYrFrZe"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/4F8O7axjzw3z0xVPRG8JFS"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 35111
+                },
+                "genres": [
+                    "ambeat",
+                    "japanese jazztronica"
+                ],
+                "href": "https://api.spotify.com/v1/artists/4F8O7axjzw3z0xVPRG8JFS",
+                "id": "4F8O7axjzw3z0xVPRG8JFS",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b27392b45940b6926a4f1ac05a67",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e0292b45940b6926a4f1ac05a67",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d0000485192b45940b6926a4f1ac05a67",
+                        "width": 64
+                    }
+                ],
+                "name": "DJ Mitsu The Beats",
+                "popularity": 40,
+                "type": "artist",
+                "uri": "spotify:artist:4F8O7axjzw3z0xVPRG8JFS"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/0seAUteh6YCMTYjXgAOpMz"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 29147
+                },
+                "genres": [
+                    "lithuanian pop"
+                ],
+                "href": "https://api.spotify.com/v1/artists/0seAUteh6YCMTYjXgAOpMz",
+                "id": "0seAUteh6YCMTYjXgAOpMz",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb2502ff4f8629eb88749b2645",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051742502ff4f8629eb88749b2645",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1782502ff4f8629eb88749b2645",
+                        "width": 160
+                    }
+                ],
+                "name": "Marijonas Mikutavi\u010dius",
+                "popularity": 34,
+                "type": "artist",
+                "uri": "spotify:artist:0seAUteh6YCMTYjXgAOpMz"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/5AAyeSBOuWX6KqRyPWrFFN"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 2951
+                },
+                "genres": [
+                    "anime score",
+                    "japanese worship"
+                ],
+                "href": "https://api.spotify.com/v1/artists/5AAyeSBOuWX6KqRyPWrFFN",
+                "id": "5AAyeSBOuWX6KqRyPWrFFN",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb8f9c8a199b2d746a4f9553bc",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051748f9c8a199b2d746a4f9553bc",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1788f9c8a199b2d746a4f9553bc",
+                        "width": 160
+                    }
+                ],
+                "name": "Michiru",
+                "popularity": 35,
+                "type": "artist",
+                "uri": "spotify:artist:5AAyeSBOuWX6KqRyPWrFFN"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/7jkUG7asv5cjORIh769EvG"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 13046
+                },
+                "genres": [
+                    "meme"
+                ],
+                "href": "https://api.spotify.com/v1/artists/7jkUG7asv5cjORIh769EvG",
+                "id": "7jkUG7asv5cjORIh769EvG",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb7c6a350ae129b4ea4aa962ef",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051747c6a350ae129b4ea4aa962ef",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1787c6a350ae129b4ea4aa962ef",
+                        "width": 160
+                    }
+                ],
+                "name": "Misutra",
+                "popularity": 38,
+                "type": "artist",
+                "uri": "spotify:artist:7jkUG7asv5cjORIh769EvG"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/24ZP6P1JgCo65CEJsk2OQ2"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 62068
+                },
+                "genres": [
+                    "bossa nova",
+                    "mpb",
+                    "velha guarda"
+                ],
+                "href": "https://api.spotify.com/v1/artists/24ZP6P1JgCo65CEJsk2OQ2",
+                "id": "24ZP6P1JgCo65CEJsk2OQ2",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b273ce5e217cf4691d48f5b88a73",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e02ce5e217cf4691d48f5b88a73",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d00004851ce5e217cf4691d48f5b88a73",
+                        "width": 64
+                    }
+                ],
+                "name": "Mi\u00facha",
+                "popularity": 48,
+                "type": "artist",
+                "uri": "spotify:artist:24ZP6P1JgCo65CEJsk2OQ2"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/0vqV4fZF5arLmtpz3RxJAe"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 18019
+                },
+                "genres": [
+                    "dark trap",
+                    "scream rap"
+                ],
+                "href": "https://api.spotify.com/v1/artists/0vqV4fZF5arLmtpz3RxJAe",
+                "id": "0vqV4fZF5arLmtpz3RxJAe",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebe1205712aff4bf1a2ce7b370",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174e1205712aff4bf1a2ce7b370",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178e1205712aff4bf1a2ce7b370",
+                        "width": 160
+                    }
+                ],
+                "name": "Mugxtsu",
+                "popularity": 29,
+                "type": "artist",
+                "uri": "spotify:artist:0vqV4fZF5arLmtpz3RxJAe"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/2yzcoSqo3ZOCguk7T0Msa9"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 30683
+                },
+                "genres": [
+                    "japanese vtuber"
+                ],
+                "href": "https://api.spotify.com/v1/artists/2yzcoSqo3ZOCguk7T0Msa9",
+                "id": "2yzcoSqo3ZOCguk7T0Msa9",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebb9714da3baf214fe6ae5175c",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174b9714da3baf214fe6ae5175c",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178b9714da3baf214fe6ae5175c",
+                        "width": 160
+                    }
+                ],
+                "name": "\u30df\u30c4\u30ad\u30e8",
+                "popularity": 45,
+                "type": "artist",
+                "uri": "spotify:artist:2yzcoSqo3ZOCguk7T0Msa9"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/1f1QDpWGnTQa0ujdJALuDD"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 1017
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/1f1QDpWGnTQa0ujdJALuDD",
+                "id": "1f1QDpWGnTQa0ujdJALuDD",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b273af496d06bbb69da27c5d02d0",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e02af496d06bbb69da27c5d02d0",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d00004851af496d06bbb69da27c5d02d0",
+                        "width": 64
+                    }
+                ],
+                "name": "Pitutza",
+                "popularity": 33,
+                "type": "artist",
+                "uri": "spotify:artist:1f1QDpWGnTQa0ujdJALuDD"
+            }
+        ],
+        "limit": 20,
+        "next": "https://api.spotify.com/v1/search?query=Micutzu&type=artist&market=RO&offset=20&limit=20",
+        "offset": 0,
+        "previous": null,
+        "total": 501
+    }
+}

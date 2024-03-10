@@ -22,5 +22,8 @@ def remove_artists(all_artists):
     all_artists.remove('stand up')
     all_artists.remove('Raul')
     all_artists.remove('Radu')
+    all_artists.remove('Valter')
+    all_artists.remove('Boro')
+    all_artists.remove('Cristi')
 
     return all_artists

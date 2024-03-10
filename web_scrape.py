@@ -12,6 +12,7 @@ import re
 from format_artist_list import remove_artists
 from upload_image import upload_blob
 from insert_to_database import *
+from spotify import get_artist_details
 
 
 iabilet_url = 'https://www.iabilet.ro'
@@ -221,7 +222,7 @@ for event in events:
 
     if event['date'] == '':
         event.pop('date')
-    event.pop('location')
+    event_location = event.pop('location')
     ticket_types = event.pop('ticket_types')
 
     event_to_add = event
@@ -229,8 +230,24 @@ for event in events:
     event_id = insert_event_into_table(event_to_add)
 
     for artist in event['artists']:
-        artist_id = insert_artist_into_table(artist)
+        if event_location == 'The Fool' or event_location == 'Club 99':
+            artist_details = {
+                'name': artist,
+                'image_url': '',
+                'genre': ['stand up comedy']
+            }
+        else:
+            artist_details = get_artist_details(artist)
+
+            if artist_details['image_url'] != '':
+                artist_details['image_url'] = upload_blob(artist_details['image_url'], 'artist-images/' + artist + '.jpg')
+
+        artist_id = insert_artist_into_table(artist_details)
         insert_event_artist_into_table(event_id, artist_id)
+
+        for genre in artist_details['genre']:
+            genre_id = insert_genre_into_table(genre)
+            insert_genre_artist_into_table(genre_id, artist_id)
 
     for ticket_type in ticket_types:
         ticket_type['event_id'] = event_id
